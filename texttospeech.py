@@ -6,7 +6,6 @@ class TextToSpeech:
         self.client = texttospeech.TextToSpeechClient()
 
     def synthesize_speech(self, text, filename):
-        print(f'img_name: {filename}')
         # Set the text input to be synthesized
         synthesis_input = texttospeech.SynthesisInput(text=text)
 
@@ -35,4 +34,4 @@ class TextToSpeech:
         with open(f'{filename}.mp3', "wb") as out:
             out.write(response.audio_content)
 
-        print(f'Audio content written to file "{filename}"')
+        return f'{filename}.mp3'
