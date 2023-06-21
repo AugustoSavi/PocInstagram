@@ -4,3 +4,4 @@ pytesseract==0.3.10
 python-dotenv==0.19.2
 google-cloud-texttospeech==2.14.1
 moviepy==1.0.3
+instaloader==4.9.6
