@@ -34,7 +34,7 @@ class Application():
         root.mainloop()
 
     # Function to create voice over
-    def execute(self, filePath, text, img_name):
+    def execute(self, filePath):
         textOcr = ocr.extract_text(filePath)
         clearedText = ocrCleaning.process_text(textOcr)
         self.text_box.delete("1.0", "end")
@@ -57,9 +57,7 @@ class Application():
 
     def save_text_to_img(self):
         if self.img_paths:
-            img_name = f'{self.voiceoverDir}/{os.path.basename(self.img_paths[self.current_image_index]).split(".")[0]}'
-            text = self.text_box.get("1.0", "end-1c")
-            self.execute(self.img_paths[self.current_image_index], text, img_name)
+            self.execute(self.img_paths[self.current_image_index])
 
     def next_image(self):
         if self.img_paths:
@@ -80,13 +78,13 @@ class Application():
         video_creator.create_video("video_final.mp4")
 
     def salvar_texto(self):
-        img_name = f'{self.voiceoverDir}/{os.path.basename(self.img_paths[self.current_image_index]).split(".")[0]}'
+        mp3_filename = f'{self.voiceoverDir}/{os.path.basename(self.img_paths[self.current_image_index]).split(".")[0]}'
         clearedText = self.text_box.get("1.0", "end-1c")
-        mp3_path = textToSpeech.synthesize_speech(clearedText, img_name)
+        textToSpeech.synthesize_speech(clearedText, mp3_filename)
         self.imagesAndTexts.append(
             (
                 self.img_paths[self.current_image_index],
-                mp3_path
+                f'{mp3_filename}.mp3'
             )
         )
 
