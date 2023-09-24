@@ -19,7 +19,7 @@ class TextToSpeech:
         audio_config = texttospeech.AudioConfig(
             audio_encoding=texttospeech.AudioEncoding.MP3,
             pitch=-7.2,
-            speaking_rate=1.4
+            speaking_rate=1.5
         )
 
         # Perform the text-to-speech request on the text input with the selected
